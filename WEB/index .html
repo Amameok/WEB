@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>John Developer - IT Portfolio</title>
+        <meta
+            name="description"
+            content="Professional IT Portfolio - Full Stack Developer specializing in web technologies"
+        />
+        <meta
+            name="keywords"
+            content="IT, developer, portfolio, web development, programming"
+        />
+
+        <!-- Preconnect to external resources for performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <!-- Google Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome for icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="styles/responsive.css" />
+    </head>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    if(form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            status.textContent = "Sending...";
+            try {
+                const data = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    status.textContent = "Thank you! Your message has been sent.";
+                    form.reset();
+                } else {
+                    status.textContent = "Oops! There was a problem. Please try again.";
+                }
+            } catch {
+                status.textContent = "Oops! There was a problem. Please try again.";
+            }
+        });
+    }
+});
+</script>
+    <body>
+        <div id="root"></div> <script src="/App.79369579.js"></script>
+       <!-- Professional & Visible Login Modal -->
+        <div id="login-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#10121a;z-index:9998;transition:opacity 0.3s;"></div>
+        <div id="login-modal" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,10,10,0.0);display:flex;align-items:center;justify-content:center;z-index:9999;">
+            <form id="login-form" style="
+                background: linear-gradient(135deg, #fff 80%, #e3e9f7 100%);
+                padding:2.5rem 2rem 2rem 2rem;
+                border-radius:18px;
+                box-shadow:0 8px 40px 0 rgba(0,0,0,0.45), 0 1.5px 0 #007bff;
+                max-width:370px;
+                width:100%;
+                display:flex;
+                flex-direction:column;
+                gap:1.2rem;
+                position:relative;
+                border: 3px solid #007bff;
+                ">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;justify-content:center;">
+                    <i class="fas fa-user-lock" style="font-size:2.2rem;color:#007bff;"></i>
+                    <h2 style="margin:0;font-size:1.6rem;font-weight:700;color:#1a2236;letter-spacing:0.5px;text-shadow:0 2px 8px #e3e9f7;">Portfolio Login</h2>
+                </div>
+                <div>
+                    <label for="login-username" style="font-size:1rem;font-weight:600;color:#222;">Username</label>
+                    <input type="text" id="login-username" autocomplete="username" placeholder="Enter your username" required style="
+                        width:100%;
+                        margin-top:0.3rem;
+                        padding:0.7rem 0.9rem;
+                        border:2px solid #007bff;
+                        border-radius:7px;
+                        font-size:1.08rem;
+                        outline:none;
+                        background:#f7faff;
+                        color:#222;
+                        font-weight:500;
+                        box-shadow:0 1px 6px 0 rgba(0,123,255,0.07);
+                        transition:border 0.2s, box-shadow 0.2s;
+                    " />
+                </div>
+                <div>
+                    <label for="login-password" style="font-size:1rem;font-weight:600;color:#222;">Password</label>
+                    <input type="password" id="login-password" autocomplete="current-password" placeholder="Enter your password" required style="
+                        width:100%;
+                        margin-top:0.3rem;
+                        padding:0.7rem 0.9rem;
+                        border:2px solid #007bff;
+                        border-radius:7px;
+                        font-size:1.08rem;
+                        outline:none;
+                        background:#f7faff;
+                        color:#222;
+                        font-weight:500;
+                        box-shadow:0 1px 6px 0 rgba(0,123,255,0.07);
+                        transition:border 0.2s, box-shadow 0.2s;
+                    " />
+                </div>
+                <button type="submit" style="
+                    width:100%;
+                    padding:0.8rem 0;
+                    background:linear-gradient(90deg,#007bff 60%,#0056b3 100%);
+                    color:#fff;
+                    font-weight:700;
+                    font-size:1.13rem;
+                    letter-spacing:0.5px;
+                    border:none;
+                    border-radius:7px;
+                    box-shadow:0 2px 12px rgba(0,123,255,0.13);
+                    cursor:pointer;
+                    transition:background 0.2s;
+                    margin-top:0.2rem;
+                ">Login</button>
+                <p id="login-error" style="color:#d90429;font-size:1.02rem;text-align:center;margin:0;display:none;font-weight:600;">Invalid username or password.</p>
+                <div style="text-align:center;font-size:0.97rem;color:#888;margin-top:0.5rem;">
+                    <span>Access is restricted to authorized users only.</span>
+                </div>
+            </form>
+        </div>
+        <!-- ...existing code... -->
+
+        <!-- Log Out Button (visible only when logged in) -->
+        <button id="logout-btn" style="
+            display:none;
+            position:fixed;
+            top:24px;
+            right:32px;
+            z-index:9998;
+            background:linear-gradient(90deg,#007bff 60%,#0056b3 100%);
+            color:#fff;
+            border:none;
+            border-radius:6px;
+            padding:0.6rem 1.3rem;
+            font-size:1rem;
+            font-weight:600;
+            box-shadow:0 2px 12px rgba(0,123,255,0.13);
+            cursor:pointer;
+            transition:background 0.2s;
+        ">
+            <i class="fas fa-sign-out-alt" style="margin-right:0.5rem;"></i>Log Out
+        </button>
+
+        <!-- Scripts -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('login-modal');
+            const bg = document.getElementById('login-bg');
+            const form = document.getElementById('login-form');
+            const error = document.getElementById('login-error');
+            const usernameInput = document.getElementById('login-username');
+            const passwordInput = document.getElementById('login-password');
+            const logoutBtn = document.getElementById('logout-btn');
+            // Prevent scrolling while modal is open
+            document.body.style.overflow = 'hidden';
+            // Autofocus username on modal open
+            setTimeout(() => { usernameInput.focus(); }, 300);
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value;
+                if (username === 'JohnCarloSalanawon' && password === '12192003salanawon') {
+                    modal.style.display = 'none';
+                    bg.style.display = 'none';
+                    document.body.style.overflow = '';
+                    logoutBtn.style.display = 'block';
+                } else {
+                    error.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            });
+
+            // Hide error on input
+            usernameInput.addEventListener('input', () => error.style.display = 'none');
+            passwordInput.addEventListener('input', () => error.style.display = 'none');
+
+            // Log out functionality
+            logoutBtn.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                bg.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                logoutBtn.style.display = 'none';
+                form.reset();
+                error.style.display = 'none';
+                setTimeout(() => { usernameInput.focus(); }, 300);
+            });
+        });
+        </script>
+        <script src="scripts/main.js"></script>
+<!-- ...existing code... -->
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <span>John Carlo</span>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#resume" class="nav-link">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero/Landing Section -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="profile-image-container">
+                        <img
+                            src="assets/profile.png"
+                            alt="John Developer Profile"
+                            class="profile-image"
+                        />
+                    </div>
+                    <h1 class="hero-title">John Web Developer</h1>
+                    <p class="hero-subtitle">Junior IT Professional</p>
+                    <p class="hero-description">
+                        Passionate about creating innovative solutions and
+                        building scalable applications that make a difference in
+                        the digital world.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary"
+                            >View My Work</a
+                        >
+                        <a href="#contact" class="btn btn-secondary"
+                            >Get In Touch</a
+                        >
+                    </div>
+                    <div class="social-links">
+                        <a href="www.linkedin.com/in/amameok-undefined-5042492b4" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Amameok" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://x.com/SEN_Meok" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll Down</span>
+                <i class="fas fa-arrow-down"></i>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">
+                        Get to know more about my background and expertise
+                    </p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Professional Background</h3>
+                        <p>
+                            With over 2 years of experience in IT and software
+                            development, I specialize in creating robust,
+                            scalable applications using modern technologies. My
+                            journey began with a passion for problem-solving and
+                            has evolved into expertise across full-stack
+                            development, cloud architecture, and system
+                            optimization.
+                        </p>
+                        <p>
+                            I believe in writing clean, maintainable code and
+                            staying current with industry best practices. My
+                            approach combines technical excellence with strong
+                            communication skills to deliver solutions that
+                            exceed expectations.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number">20+</span>
+                                <span class="stat-label"
+                                    >Projects Completed</span
+                                >
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">2+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">7+</span>
+                                <span class="stat-label">Technologies</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-card">
+                            <h4>Core Values</h4>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-check"></i> Innovation &
+                                    Creativity
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i> Continuous
+                                    Learning
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i> Quality &
+                                    Excellence
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i> Collaboration
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">
+                        Showcase of my recent work and achievements
+                    </p>
+                </div>
+                                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Web Developer</h3>
+                            <p>
+                                Developed and maintained responsive websites and web applications using modern frontend and backend technologies.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+<!-- ...existing code... -->
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Task Management App</h3>
+                            <p>
+                                Mobile-responsive task management application
+                                with real-time updates and team collaboration
+                                features.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">PWA</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Analytics Dashboard</h3>
+                            <p>
+                                Data visualization dashboard for business
+                                intelligence with interactive charts and
+                                real-time data processing.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">D3.js</span>
+                                <span class="tech-tag">Flask</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">
+                        Technologies and tools I work with
+                    </p>
+                </div>
+                <div class="skills-content">
+                    <div class="skills-category">
+                        <h3>Frontend Development</h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <span class="skill-name">HTML5/CSS3</span>
+                                <div class="skill-bar">
+                                    <div
+                                        class="skill-progress"
+                                        data-width="95"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name"
+                                    >JavaScript/TypeScript</span
+                                >
+                                <div class="skill-bar">
+                                    <div
+                                        class="skill-progress"
+                                        data-width="90"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">React/Vue.js</span>
+                                <div class="skill-bar">
+                                    <div
+                                        class="skill-progress"
+                                        data-width="85"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h3>Backend Development</h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-bar">
+                                    <div
+                                        class="skill-progress"
+                                        data-width="88"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div
+                                        class="skill-progress"
+                                        data-width="82"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Database Design</span>
+                                <div class="skill-bar">
+                                    <div
+                                        class="skill-progress"
+                                        data-width="80"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h3>Tools & Technologies</h3>
+                        <div class="skills-icons">
+                            <div class="skill-icon">
+                                <i class="fab fa-git-alt"></i>
+                                <span>Git</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-html5"></i>
+                                <span>HTML</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-aws"></i>
+                                <span>AWS</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                                <span>SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="resume">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Resume</h2>
+                    <p class="section-subtitle">
+                        My professional journey and qualifications
+                    </p>
+                </div>
+                <div class="resume-content">
+                    <div class="resume-section">
+                        <h3>Experience</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">2021 - Present</div>
+                                <div class="timeline-content">
+                                    <h4>Juior Developer</h4>
+                                    <p class="company">Tech Solutions Inc.</p>
+                                    <ul>
+                                        <li>
+                                            Led development of enterprise web
+                                            applications serving 10,000+ users
+                                        </li>
+                                        <li>
+                                            Implemented CI/CD pipelines reducing
+                                            deployment time by 60%
+                                        </li>
+                                        <li>
+                                            Mentored junior developers and
+                                            conducted code reviews
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">2019 - 2021</div>
+                                <div class="timeline-content">
+                                    <h4>Full Stack Developer</h4>
+                                    <p class="company">
+                                        Digital Innovations LLC
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            Developed responsive web
+                                            applications using modern frameworks
+                                        </li>
+                                        <li>
+                                            Optimized database queries improving
+                                            performance by 40%
+                                        </li>
+                                        <li>
+                                            Collaborated with UX/UI team to
+                                            implement user-centered designs
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resume-section">
+                        <h1>Education</h1>
+                        <div class="education-item">
+                            <h2> Elementary </h2>
+                            <h4>Felipe Tayko Memorial School</h4>
+                            <p class="university">FTMS </p>
+                            <p class="graduation-date">Graduated: 2010-2016</p>
+                        </div>
+                    </div>
+                    <div class="resume-section">
+                        <div class="education-item">
+                            <h2> High School </h2>
+                            <h4>Siaton National High School </h4>
+                            <p class="university">SNHS</p>
+                            <p class="graduation-date">Graduated: 2016-2021</p>
+                        </div>
+                    </div>
+                    <div class="resume-section">
+                        <div class="education-item">
+                            <h2> Senior High </h2>
+                            <h4>Siaton National High School </h4>
+                            <p class="university">SNHS</p>
+                            <p class="graduation-date">Graduated: 2021-2023</p>
+                        </div>
+                    </div>
+                    <div class="resume-section">
+                        <div class="education-item">
+                            <h2>College  </h2>
+                            <h4>Asian College </h4>
+                            <p class="university">Diploma in Inforation Technology</p>
+                            <p class="graduation-date">Graduated: 2023 ongoing</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="resume-download">
+                        <a href="MeokResume.pdf" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download PDF Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">
+                Let's discuss your next project or opportunity
+            </p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p><a href="mailto:salanawon01@email.com">salanawon01@email.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p><a href="tel:+639770212580">+63 9770212580</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Siaton, Negros Oriental</p>
+                    </div>
+                </div>
+            </div>
+            <form action="https://formspree.io/f/xyzjvvod" method="POST" class="contact-form" id="contact-form">
+                <h3 class="contact-form-title">Send a Message</h3>
+                <div class="form-group">
+                    <label for="contact-email" class="form-label">Your Email</label>
+                    <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        placeholder="you@email.com"
+                        required
+                        class="form-input"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="contact-message" class="form-label">Your Message</label>
+                    <textarea
+                        id="contact-message"
+                        name="message"
+                        rows="5"
+                        placeholder="Type your message here..."
+                        required
+                        class="form-textarea"
+                    ></textarea>
+                </div>
+                <button type="submit" class="form-submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+                <div id="form-status" class="form-status"></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>John Developer</h3>
+                        <p>Building tomorrow's digital solutions today.</p>
+                        <div class="footer-social">
+                            <a href="www.linkedin.com/in/amameok-undefined-5042492b4" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/Amameok" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://x.com/SEN_Meok" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact</h4>
+                        <p>salanawon01@email.com</p>
+                        <p>+63 9770212580</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 John Developer. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+ 
+        <!-- Scripts -->
+        <script src="scripts/main.js"></script>
+    </body>
+</html>
